@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<!DOCTYPE mame [
+<!ELEMENT mame (machine+)>
+	<!ATTLIST mame build CDATA #IMPLIED>
+	<!ATTLIST mame debug (yes|no) "no">
+	<!ATTLIST mame mameconfig CDATA #REQUIRED>
+	<!ELEMENT machine (description, year?, manufacturer?, biosset*, rom*, disk*, device_ref*, sample*, chip*, display*, sound?, input?, dipswitch*, configuration*, port*, adjuster*, driver?, feature*, device*, slot*, softwarelist*, ramoption*)>
+		<!ATTLIST machine name CDATA #REQUIRED>
+		<!ATTLIST machine sourcefile CDATA #IMPLIED>
+		<!ATTLIST machine isbios (yes|no) "no">
+		<!ATTLIST machine isdevice (yes|no) "no">
+		<!ATTLIST machine ismechanical (yes|no) "no">
+		<!ATTLIST machine runnable (yes|no) "yes">
+		<!ATTLIST machine cloneof CDATA #IMPLIED>
+		<!ATTLIST machine romof CDATA #IMPLIED>
+		<!ATTLIST machine sampleof CDATA #IMPLIED>
+		<!ELEMENT description (#PCDATA)>
+		<!ELEMENT year (#PCDATA)>
+		<!ELEMENT manufacturer (#PCDATA)>
+		<!ELEMENT biosset EMPTY>
+			<!ATTLIST biosset name CDATA #REQUIRED>
+			<!ATTLIST biosset description CDATA #REQUIRED>
+			<!ATTLIST biosset default (yes|no) "no">
+		<!ELEMENT rom EMPTY>
+			<!ATTLIST rom name CDATA #REQUIRED>
+			<!ATTLIST rom bios CDATA #IMPLIED>
+			<!ATTLIST rom size CDATA #REQUIRED>
+			<!ATTLIST rom crc CDATA #IMPLIED>
+			<!ATTLIST rom sha1 CDATA #IMPLIED>
+			<!ATTLIST rom merge CDATA #IMPLIED>
+			<!ATTLIST rom region CDATA #IMPLIED>
+			<!ATTLIST rom offset CDATA #IMPLIED>
+			<!ATTLIST rom status (baddump|nodump|good) "good">
+			<!ATTLIST rom optional (yes|no) "no">
+		<!ELEMENT disk EMPTY>
+			<!ATTLIST disk name CDATA #REQUIRED>
+			<!ATTLIST disk sha1 CDATA #IMPLIED>
+			<!ATTLIST disk merge CDATA #IMPLIED>
+			<!ATTLIST disk region CDATA #IMPLIED>
+			<!ATTLIST disk index CDATA #IMPLIED>
+			<!ATTLIST disk writable (yes|no) "no">
+			<!ATTLIST disk status (baddump|nodump|good) "good">
+			<!ATTLIST disk optional (yes|no) "no">
+		<!ELEMENT device_ref EMPTY>
+			<!ATTLIST device_ref name CDATA #REQUIRED>
+		<!ELEMENT sample EMPTY>
+			<!ATTLIST sample name CDATA #REQUIRED>
+		<!ELEMENT chip EMPTY>
+			<!ATTLIST chip name CDATA #REQUIRED>
+			<!ATTLIST chip tag CDATA #IMPLIED>
+			<!ATTLIST chip type (cpu|audio) #REQUIRED>
+			<!ATTLIST chip clock CDATA #IMPLIED>
+		<!ELEMENT display EMPTY>
+			<!ATTLIST display tag CDATA #IMPLIED>
+			<!ATTLIST display type (raster|vector|lcd|svg|unknown) #REQUIRED>
+			<!ATTLIST display rotate (0|90|180|270) #IMPLIED>
+			<!ATTLIST display flipx (yes|no) "no">
+			<!ATTLIST display width CDATA #IMPLIED>
+			<!ATTLIST display height CDATA #IMPLIED>
+			<!ATTLIST display refresh CDATA #REQUIRED>
+			<!ATTLIST display pixclock CDATA #IMPLIED>
+			<!ATTLIST display htotal CDATA #IMPLIED>
+			<!ATTLIST display hbend CDATA #IMPLIED>
+			<!ATTLIST display hbstart CDATA #IMPLIED>
+			<!ATTLIST display vtotal CDATA #IMPLIED>
+			<!ATTLIST display vbend CDATA #IMPLIED>
+			<!ATTLIST display vbstart CDATA #IMPLIED>
+		<!ELEMENT sound EMPTY>
+			<!ATTLIST sound channels CDATA #REQUIRED>
+			<!ELEMENT condition EMPTY>
+			<!ATTLIST condition tag CDATA #REQUIRED>
+			<!ATTLIST condition mask CDATA #REQUIRED>
+			<!ATTLIST condition relation (eq|ne|gt|le|lt|ge) #REQUIRED>
+			<!ATTLIST condition value CDATA #REQUIRED>
+		<!ELEMENT input (control*)>
+			<!ATTLIST input service (yes|no) "no">
+			<!ATTLIST input tilt (yes|no) "no">
+			<!ATTLIST input players CDATA #REQUIRED>
+			<!ATTLIST input coins CDATA #IMPLIED>
+			<!ELEMENT control EMPTY>
+				<!ATTLIST control type CDATA #REQUIRED>
+				<!ATTLIST control player CDATA #IMPLIED>
+				<!ATTLIST control buttons CDATA #IMPLIED>
+				<!ATTLIST control reqbuttons CDATA #IMPLIED>
+				<!ATTLIST control minimum CDATA #IMPLIED>
+				<!ATTLIST control maximum CDATA #IMPLIED>
+				<!ATTLIST control sensitivity CDATA #IMPLIED>
+				<!ATTLIST control keydelta CDATA #IMPLIED>
+				<!ATTLIST control reverse (yes|no) "no">
+				<!ATTLIST control ways CDATA #IMPLIED>
+				<!ATTLIST control ways2 CDATA #IMPLIED>
+				<!ATTLIST control ways3 CDATA #IMPLIED>
+		<!ELEMENT dipswitch (condition?, diplocation*, dipvalue*)>
+			<!ATTLIST dipswitch name CDATA #REQUIRED>
+			<!ATTLIST dipswitch tag CDATA #REQUIRED>
+			<!ATTLIST dipswitch mask CDATA #REQUIRED>
+			<!ELEMENT diplocation EMPTY>
+				<!ATTLIST diplocation name CDATA #REQUIRED>
+				<!ATTLIST diplocation number CDATA #REQUIRED>
+				<!ATTLIST diplocation inverted (yes|no) "no">
+			<!ELEMENT dipvalue (condition?)>
+				<!ATTLIST dipvalue name CDATA #REQUIRED>
+				<!ATTLIST dipvalue value CDATA #REQUIRED>
+				<!ATTLIST dipvalue default (yes|no) "no">
+		<!ELEMENT configuration (condition?, conflocation*, confsetting*)>
+			<!ATTLIST configuration name CDATA #REQUIRED>
+			<!ATTLIST configuration tag CDATA #REQUIRED>
+			<!ATTLIST configuration mask CDATA #REQUIRED>
+			<!ELEMENT conflocation EMPTY>
+				<!ATTLIST conflocation name CDATA #REQUIRED>
+				<!ATTLIST conflocation number CDATA #REQUIRED>
+				<!ATTLIST conflocation inverted (yes|no) "no">
+			<!ELEMENT confsetting (condition?)>
+				<!ATTLIST confsetting name CDATA #REQUIRED>
+				<!ATTLIST confsetting value CDATA #REQUIRED>
+				<!ATTLIST confsetting default (yes|no) "no">
+		<!ELEMENT port (analog*)>
+			<!ATTLIST port tag CDATA #REQUIRED>
+			<!ELEMENT analog EMPTY>
+				<!ATTLIST analog mask CDATA #REQUIRED>
+		<!ELEMENT adjuster (condition?)>
+			<!ATTLIST adjuster name CDATA #REQUIRED>
+			<!ATTLIST adjuster default CDATA #REQUIRED>
+		<!ELEMENT driver EMPTY>
+			<!ATTLIST driver status (good|imperfect|preliminary) #REQUIRED>
+			<!ATTLIST driver emulation (good|imperfect|preliminary) #REQUIRED>
+			<!ATTLIST driver cocktail (good|imperfect|preliminary) #IMPLIED>
+			<!ATTLIST driver savestate (supported|unsupported) #REQUIRED>
+		<!ELEMENT feature EMPTY>
+			<!ATTLIST feature type (protection|palette|graphics|sound|controls|keyboard|mouse|microphone|camera|disk|printer|lan|wan|timing) #REQUIRED>
+			<!ATTLIST feature status (unemulated|imperfect) #IMPLIED>
+			<!ATTLIST feature overall (unemulated|imperfect) #IMPLIED>
+		<!ELEMENT device (instance?, extension*)>
+			<!ATTLIST device type CDATA #REQUIRED>
+			<!ATTLIST device tag CDATA #IMPLIED>
+			<!ATTLIST device fixed_image CDATA #IMPLIED>
+			<!ATTLIST device mandatory CDATA #IMPLIED>
+			<!ATTLIST device interface CDATA #IMPLIED>
+			<!ELEMENT instance EMPTY>
+				<!ATTLIST instance name CDATA #REQUIRED>
+				<!ATTLIST instance briefname CDATA #REQUIRED>
+			<!ELEMENT extension EMPTY>
+				<!ATTLIST extension name CDATA #REQUIRED>
+		<!ELEMENT slot (slotoption*)>
+			<!ATTLIST slot name CDATA #REQUIRED>
+			<!ELEMENT slotoption EMPTY>
+				<!ATTLIST slotoption name CDATA #REQUIRED>
+				<!ATTLIST slotoption devname CDATA #REQUIRED>
+				<!ATTLIST slotoption default (yes|no) "no">
+		<!ELEMENT softwarelist EMPTY>
+			<!ATTLIST softwarelist name CDATA #REQUIRED>
+			<!ATTLIST softwarelist status (original|compatible) #REQUIRED>
+			<!ATTLIST softwarelist filter CDATA #IMPLIED>
+		<!ELEMENT ramoption (#PCDATA)>
+			<!ATTLIST ramoption default CDATA #IMPLIED>
+]>
+
+<mame build="0.194 (unknown)" debug="no" mameconfig="10">
+	<machine name="galaxian" sourcefile="galaxian.cpp">
+		<description>Galaxian (Namco set 1)</description>
+		<year>1979</year>
+		<manufacturer>Namco</manufacturer>
+		<rom name="galmidw.u" size="2048" crc="745e2d61" sha1="e65f74e35b1bfaccd407e168ea55678ae9b68edf" region="maincpu" offset="0"/>
+		<rom name="galmidw.v" size="2048" crc="9c999a40" sha1="02fdcd95d8511e64c0d2b007b874112d53e41045" region="maincpu" offset="800"/>
+		<rom name="galmidw.w" size="2048" crc="b5894925" sha1="0046b9ed697a34d088de1aead8bd7cbe526a2396" region="maincpu" offset="1000"/>
+		<rom name="galmidw.y" size="2048" crc="6b3ca10b" sha1="18d8714e5ef52f63ba8888ecc5a25b17b3bf17d1" region="maincpu" offset="1800"/>
+		<rom name="7l" size="2048" crc="1b933207" sha1="8b44b0f74420871454e27894d0f004859f9e59a9" region="maincpu" offset="2000"/>
+		<rom name="1h.bin" size="2048" crc="39fb43a4" sha1="4755609bd974976f04855d51e08ec0d62ab4bc07" region="gfx1" offset="0"/>
+		<rom name="1k.bin" size="2048" crc="7e3f56a2" sha1="a9795d8b7388f404f3b0e2c6ce15d713a4c5bafa" region="gfx1" offset="800"/>
+		<rom name="6l.bpr" size="32" crc="c3ac9467" sha1="f382ad5a34d282056c78a5ec00c30ec43772bae2" region="proms" offset="0"/>
+		<device_ref name="z80"/>
+		<device_ref name="watchdog"/>
+		<device_ref name="gfxdecode"/>
+		<device_ref name="palette"/>
+		<device_ref name="screen"/>
+		<device_ref name="speaker"/>
+		<device_ref name="galaxian_sound"/>
+		<device_ref name="discrete"/>
+		<chip type="cpu" tag="maincpu" name="Z80" clock="3072000"/>
+		<chip type="audio" tag="speaker" name="Speaker"/>
+		<chip type="audio" tag="cust" name="Galaxian Custom Sound"/>
+		<chip type="audio" tag="discrete" name="Discrete Sound"/>
+		<display tag="screen" type="raster" rotate="90" width="768" height="224" refresh="60.606061" pixclock="18432000" htotal="1152" hbend="0" hbstart="768" vtotal="264" vbend="16" vbstart="240" />
+		<sound channels="1"/>
+		<input players="2" coins="2">
+			<control type="joy" player="1" buttons="1" ways="2"/>
+			<control type="joy" player="2" buttons="1" ways="2"/>
+		</input>
+		<dipswitch name="Cabinet" tag="IN0" mask="32">
+			<dipvalue name="Upright" value="0" default="yes"/>
+			<dipvalue name="Cocktail" value="32"/>
+		</dipswitch>
+		<dipswitch name="Service Mode" tag="IN0" mask="64">
+			<dipvalue name="Off" value="0" default="yes"/>
+			<dipvalue name="On" value="64"/>
+		</dipswitch>
+		<dipswitch name="Coinage" tag="IN1" mask="192">
+			<dipvalue name="2 Coins/1 Credit" value="64"/>
+			<dipvalue name="1 Coin/1 Credit" value="0" default="yes"/>
+			<dipvalue name="1 Coin/2 Credits" value="128"/>
+			<dipvalue name="Free Play" value="192"/>
+		</dipswitch>
+		<dipswitch name="Bonus Life" tag="IN2" mask="3">
+			<dipvalue name="7000" value="0" default="yes"/>
+			<dipvalue name="10000" value="1"/>
+			<dipvalue name="12000" value="2"/>
+			<dipvalue name="20000" value="3"/>
+		</dipswitch>
+		<dipswitch name="Lives" tag="IN2" mask="4">
+			<dipvalue name="2" value="0"/>
+			<dipvalue name="3" value="4" default="yes"/>
+		</dipswitch>
+		<dipswitch name="Unused" tag="IN2" mask="8">
+			<dipvalue name="Off" value="0" default="yes"/>
+			<dipvalue name="On" value="8"/>
+		</dipswitch>
+		<port tag=":IN0">
+		</port>
+		<port tag=":IN1">
+		</port>
+		<port tag=":IN2">
+		</port>
+		<driver status="good" emulation="good" savestate="supported"/>
+	</machine>
+	<machine name="galaxian_sound" sourcefile="src/mame/audio/galaxian.cpp" isdevice="yes" runnable="no">
+		<description>Galaxian Custom Sound</description>
+		<sound channels="0"/>
+	</machine>
+	<machine name="speaker" sourcefile="src/emu/speaker.cpp" isdevice="yes" runnable="no">
+		<description>Speaker</description>
+		<sound channels="1"/>
+	</machine>
+	<machine name="screen" sourcefile="src/emu/screen.cpp" isdevice="yes" runnable="no">
+		<description>Video Screen</description>
+	</machine>
+	<machine name="gfxdecode" sourcefile="src/emu/drawgfx.cpp" isdevice="yes" runnable="no">
+		<description>gfxdecode</description>
+	</machine>
+	<machine name="watchdog" sourcefile="src/devices/machine/watchdog.cpp" isdevice="yes" runnable="no">
+		<description>Watchdog Timer</description>
+	</machine>
+	<machine name="discrete" sourcefile="src/devices/sound/discrete.cpp" isdevice="yes" runnable="no">
+		<description>Discrete Sound</description>
+		<sound channels="0"/>
+	</machine>
+	<machine name="palette" sourcefile="src/emu/emupal.cpp" isdevice="yes" runnable="no">
+		<description>palette</description>
+	</machine>
+	<machine name="z80" sourcefile="src/devices/cpu/z80/z80.cpp" isdevice="yes" runnable="no">
+		<description>Z80</description>
+	</machine>
+</mame>
